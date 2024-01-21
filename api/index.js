@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import userRoutes from "./routes/user.routes.js"
+import userRoutes from "./routes/user.route.js"
+import authRoutes from "./routes/auth.route.js"
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ mongoose
         console.log(err);
     });
 const app = express();
+app.use(express.json());
 
 //listen to the port
 app.listen(3000, () => {
@@ -23,3 +25,4 @@ app.listen(3000, () => {
 //get request
 // test give use 2 things : request(data that we sent to the api) and response(data we received from the server)
 app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
